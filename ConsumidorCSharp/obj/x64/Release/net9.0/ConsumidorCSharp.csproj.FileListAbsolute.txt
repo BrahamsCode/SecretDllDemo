@@ -1,0 +1,5 @@
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\x64\Release\net9.0\ConsumidorCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\x64\Release\net9.0\ConsumidorCSharp.AssemblyInfoInputs.cache
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\x64\Release\net9.0\ConsumidorCSharp.AssemblyInfo.cs
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\x64\Release\net9.0\ConsumidorCSharp.csproj.CoreCompileInputs.cache
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\x64\Release\net9.0\ConsumidorCSharp.sourcelink.json
