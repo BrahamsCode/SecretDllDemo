@@ -1,0 +1,15 @@
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\secret.dll
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\ConsumidorCSharp.exe
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\ConsumidorCSharp.deps.json
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\ConsumidorCSharp.runtimeconfig.json
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\ConsumidorCSharp.dll
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\bin\Release\net9.0\ConsumidorCSharp.pdb
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.AssemblyInfoInputs.cache
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.AssemblyInfo.cs
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.csproj.CoreCompileInputs.cache
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.dll
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\refint\ConsumidorCSharp.dll
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.pdb
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ConsumidorCSharp.genruntimeconfig.cache
+C:\Users\Brahams\NeoTech\SecretDllDemo\ConsumidorCSharp\obj\Release\net9.0\ref\ConsumidorCSharp.dll
