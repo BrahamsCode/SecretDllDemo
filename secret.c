@@ -1,31 +1,63 @@
-// secret.c - DLL de Windows con la clave ofuscada (XOR ka/kb).
-// Clave de EJEMPLO para aprendizaje (no es la de produccion).
-// Misma tecnica que el secret.c del NDK en Android, pero compilado como .dll
-// y con una funcion C plana exportada, para que la llamen C# (P/Invoke) y Java (JNA).
+// secret.c - GENERADO AUTOMATICAMENTE. No editar a mano.
+// Varias contrasenas ofuscadas: cada una es una matriz [2][largo]
+// (fila 0 = mitad A, fila 1 = mitad B). Real = filaA[i] ^ filaB[i].
+// Llamar getSecret("nombre") para reconstruirla en runtime.
 
 #include <string.h>
 
-#define SECRET_LEN 18
-
-static const unsigned char ka[18] = {
-    0xcf, 0x41, 0x09, 0x61, 0x3f, 0xd5, 0x7c, 0x60, 0x58, 0x48, 0x45, 0xa1,
-    0x02, 0x5b, 0x3a, 0xf2, 0x33, 0xd4,
+// "postgres" (largo 18)
+static const unsigned char postgresPass[2][18] = {
+    { 0xF7, 0x33, 0x0D, 0xCD, 0x84, 0x30, 0x73, 0xFD, 0x78, 0xAF, 0xD9, 0xA8, 0x73, 0xA7, 0xBA, 0x9A, 0xA2, 0x3C }, // mitad A
+    { 0xA7, 0x54, 0x5E, 0xBC, 0xE8, 0x1D, 0x3D, 0x98, 0x17, 0xDB, 0xBC, 0xCB, 0x1B, 0x8A, 0x88, 0xAA, 0x90, 0x0A }, // mitad B
 };
 
-static const unsigned char kb[18] = {
-    0x8c, 0x2d, 0x68, 0x17, 0x5a, 0x91, 0x19, 0x0d, 0x37, 0x65, 0x01, 0xed,
-    0x4e, 0x76, 0x08, 0xc2, 0x01, 0xe2,
+// "server" (largo 15)
+static const unsigned char serverPass[2][15] = {
+    { 0xC5, 0x35, 0x3F, 0xA5, 0xB2, 0x44, 0xEC, 0x46, 0xCD, 0x4F, 0x0A, 0xD3, 0x86, 0x39, 0xF7 }, // mitad A
+    { 0x96, 0x47, 0x49, 0x88, 0xFF, 0x25, 0x85, 0x28, 0xE0, 0x0E, 0x3B, 0xB1, 0xB4, 0x7A, 0xC4 }, // mitad B
+};
+k
+// "api" (largo 16)
+static const unsigned char apiPass[2][16] = {
+    { 0xB8, 0x23, 0x9B, 0x2B, 0xFE, 0xD3, 0xD2, 0x23, 0x01, 0x4A, 0x85, 0x90, 0x40, 0xB1, 0xCC, 0xCA }, // mitad A
+    { 0xD9, 0x53, 0xF2, 0x74, 0x95, 0xB6, 0xAB, 0x7C, 0x36, 0x2C, 0xB6, 0xF1, 0x79, 0xD2, 0xFE, 0xAF }, // mitad B
 };
 
-// Buffer donde se reconstruye la clave. __declspec(dllexport) expone la funcion
-// fuera del DLL con su nombre tal cual: getSecretKey.
-static char buf[SECRET_LEN + 1];
+// "redis" (largo 16)
+static const unsigned char redisPass[2][16] = {
+    { 0xE4, 0x1D, 0x0F, 0xC5, 0xA3, 0x7E, 0x14, 0x5C, 0x89, 0x0C, 0xF9, 0x60, 0xB2, 0x98, 0xDA, 0xA2 }, // mitad A
+    { 0xB6, 0x78, 0x6B, 0xAC, 0xD0, 0x5F, 0x57, 0x3D, 0xEA, 0x64, 0x9C, 0x43, 0x80, 0xA8, 0xE8, 0x94 }, // mitad B
+};
 
-__declspec(dllexport) const char* getSecretKey(void) {
-    int i;
-    for (i = 0; i < SECRET_LEN; i++) {
-        buf[i] = (char)(ka[i] ^ kb[i]);
+typedef struct {
+    const char* name;
+    const unsigned char* a;
+    const unsigned char* b;
+    int len;
+} SecretEntry;
+
+static const SecretEntry secrets[] = {
+    { "postgres", postgresPass[0], postgresPass[1], 18 },
+    { "server", serverPass[0], serverPass[1], 15 },
+    { "api", apiPass[0], apiPass[1], 16 },
+    { "redis", redisPass[0], redisPass[1], 16 },
+};
+static const int secretCount = 4;
+
+static char buf[18 + 1];
+
+// Devuelve la contrasena cuyo nombre coincide, o NULL si no existe.
+// La contrasena se reconstruye por XOR solo en esta llamada.
+__declspec(dllexport) const char* getSecret(const char* name) {
+    int i, j;
+    for (i = 0; i < secretCount; i++) {
+        if (strcmp(name, secrets[i].name) == 0) {
+            for (j = 0; j < secrets[i].len; j++) {
+                buf[j] = (char)(secrets[i].a[j] ^ secrets[i].b[j]);
+            }
+            buf[secrets[i].len] = '\0';
+            return buf;
+        }
     }
-    buf[SECRET_LEN] = 0;
-    return buf;
+    return (const char*)0; // nombre no encontrado
 }

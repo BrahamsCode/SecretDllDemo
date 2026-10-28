@@ -1,0 +1,15 @@
+# Build artifacts de C# (.NET)
+bin/
+obj/
+
+# Build artifacts del DLL (MSVC)
+*.exp
+*.lib
+*.obj
+
+# Build artifacts de Java
+*.class
+
+# IDE
+.idea/
+*.iml
